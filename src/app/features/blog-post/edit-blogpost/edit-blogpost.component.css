@@ -1,0 +1,35 @@
+.d-flex flex-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.generate-short-description{
+    width: auto;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(14, 118, 245);
+    margin-left: 5px;
+}
+
+.categoriesContainer{
+    width: 350px;
+}
+
+.mt-2 mb-5{
+    max-width: 350px;
+}
+
+.title-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.language-selector{
+    border-radius: 5px;
+    width: 80px;
+    margin-top: 10px;
+}
