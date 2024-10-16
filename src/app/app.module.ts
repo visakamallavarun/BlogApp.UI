@@ -18,6 +18,7 @@ import { HomeComponent } from './features/public/home/home.component';
 import { BlogDetailsComponent } from './features/public/blog-details/blog-details.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { BlogCategoryModule } from 'projects/blog-category/src/public-api';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    BlogCategoryModule
   ],
   providers: [
     {
