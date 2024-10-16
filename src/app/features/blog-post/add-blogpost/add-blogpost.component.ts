@@ -3,7 +3,7 @@ import { AddBlogPost } from '../models/add-blog-post.model';
 import { BlogPostService } from '../services/blog-post.service';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { ImageService } from 'src/app/shared/components/image-selector/image.service';
+import { ImageService } from 'blog-image-selector';
 import { Category, CategoryService } from 'blog-category';
 
 @Component({

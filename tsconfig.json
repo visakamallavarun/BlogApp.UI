@@ -5,6 +5,9 @@
     "paths": {
       "blog-category": [
         "dist/blog-category"
+      ],
+      "blog-image-selector": [
+        "dist/blog-image-selector"
       ]
     },
     "baseUrl": "./",

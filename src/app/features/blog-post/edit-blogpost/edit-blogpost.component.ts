@@ -4,13 +4,13 @@ import { Observable, Subscription } from 'rxjs';
 import { BlogPostService } from '../services/blog-post.service';
 import { BlogPost } from '../models/blog-post.model';
 import { UpdateBlogPost } from '../models/update-blog-post.model';
-import { ImageService } from 'src/app/shared/components/image-selector/image.service';
 import { AddContent } from '../models/content-post.model';
 import { GetCategory } from '../models/blog-category';
 import { map } from 'rxjs/operators';
 import { UpdateBlogPostLanguage } from '../models/update-blog-post-on-language.model';
 import { GenerateCategoryResponse } from '../models/category-generate.modely';
 import { Category, CategoryService } from 'blog-category';
+import { ImageService } from 'blog-image-selector';
 
 @Component({
   selector: 'app-edit-blogpost',

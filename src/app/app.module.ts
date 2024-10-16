@@ -10,12 +10,12 @@ import { BlogpostListComponent } from './features/blog-post/blogpost-list/blogpo
 import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blogpost.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { EditBlogpostComponent } from './features/blog-post/edit-blogpost/edit-blogpost.component';
-import { ImageSelectorComponent } from './shared/components/image-selector/image-selector.component';
 import { HomeComponent } from './features/public/home/home.component';
 import { BlogDetailsComponent } from './features/public/blog-details/blog-details.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { BlogCategoryModule } from 'projects/blog-category/src/public-api';
+import { BlogImageSelectorModule } from 'blog-image-selector';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import { BlogCategoryModule } from 'projects/blog-category/src/public-api';
     BlogpostListComponent,
     AddBlogpostComponent,
     EditBlogpostComponent,
-    ImageSelectorComponent,
     HomeComponent,
     BlogDetailsComponent,
     LoginComponent
@@ -36,6 +35,7 @@ import { BlogCategoryModule } from 'projects/blog-category/src/public-api';
     HttpClientModule,
     MarkdownModule.forRoot(),
     BlogCategoryModule,
+    BlogImageSelectorModule
   ],
   providers: [
     {
