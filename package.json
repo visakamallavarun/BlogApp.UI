@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-blog-category":"ng build blog-category"
+    "build-blog-category":"ng build blog-category",
+    "watch-build-blog-category":"ng build blog-category --watch --configuration development"
   },
   "private": true,
   "dependencies": {

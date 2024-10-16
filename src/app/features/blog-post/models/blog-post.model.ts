@@ -1,4 +1,5 @@
-import { Category } from "../../category/models/category.model";
+import { Category } from "blog-category";
+
 
 export interface BlogPost {
   id: string;
