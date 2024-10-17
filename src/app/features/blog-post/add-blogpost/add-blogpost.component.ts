@@ -2,10 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddBlogPost } from '../models/add-blog-post.model';
 import { BlogPostService } from '../services/blog-post.service';
 import { Router } from '@angular/router';
-import { CategoryService } from '../../category/services/category.service';
 import { Observable, Subscription } from 'rxjs';
-import { Category } from '../../category/models/category.model';
-import { ImageService } from 'src/app/shared/components/image-selector/image.service';
+import { Category, CategoryService } from 'category-lib';
+import { ImageService } from 'image-selector-lib';
 
 @Component({
   selector: 'app-add-blogpost',
