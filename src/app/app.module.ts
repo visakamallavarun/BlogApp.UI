@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, Injectable, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
@@ -13,8 +13,46 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ImageSelectorLibModule } from 'image-selector-lib';
-import { CategoryLibModule } from 'category-lib';
+import { CategoryLibModule, LibConfigurationProvider, LibToConfigureConfiguration } from 'category-lib';
 import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blogpost.component';
+import { environment } from 'src/environments/environment';
+
+@Injectable({ providedIn: 'root' })
+export class ConfigurationStore {
+  private internalConfig: LibToConfigureConfiguration = {
+    backendApi: ''
+  }; 
+
+  setConfig(config: LibToConfigureConfiguration) {
+    this.internalConfig = config;
+  }
+
+  getConfig() {
+    return this.internalConfig;
+  }
+}
+
+export function initApp(configurationStore: ConfigurationStore) {
+  return () => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        configurationStore.setConfig({backendApi: environment.apiBaseUrl});
+        resolve();
+      }, 2000);
+    });
+  };
+}
+
+@Injectable({ providedIn: 'root' })
+export class ConfigFromApp implements LibConfigurationProvider {
+  constructor(private configStore: ConfigurationStore) {}
+
+  get config(): LibToConfigureConfiguration {
+    return this.configStore.getConfig();
+  }
+}
+
+
 
 @NgModule({
   declarations: [
@@ -33,14 +71,30 @@ import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blog
     FormsModule,
     HttpClientModule,
     MarkdownModule.forRoot(),
-    ImageSelectorLibModule,
-    CategoryLibModule
+    ImageSelectorLibModule.forRoot({
+      config: {
+        provide: LibConfigurationProvider,
+        useClass: ConfigFromApp,
+      },
+    }),
+    CategoryLibModule.forRoot({
+      config: {
+        provide: LibConfigurationProvider,
+        useClass: ConfigFromApp,
+      },
+    })
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp,
+      multi: true,
+      deps: [ConfigurationStore],
     }
   ],
   bootstrap: [AppComponent]
