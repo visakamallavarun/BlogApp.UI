@@ -7,7 +7,6 @@ import { HomeComponent } from './features/public/home/home.component';
 import { BlogDetailsComponent } from './features/public/blog-details/blog-details.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { authGuard } from './features/auth/guards/auth.guard';
-import { AddCategoryComponent, CategoryListComponent, EditCategoryComponent } from 'category-lib';
 
 const routes: Routes = [
   {
@@ -24,17 +23,17 @@ const routes: Routes = [
   },
   {
     path: 'admin/categories',
-    component: CategoryListComponent,
+    loadChildren: () => import('category-lib').then(m => m.CategoryLibModule),
     canActivate: [authGuard]
   },
   {
     path: 'admin/categories/add',
-    component: AddCategoryComponent,
+    loadChildren: () => import('category-lib').then(m => m.CategoryLibModule),
     canActivate: [authGuard]
   },
   {
     path: 'admin/categories/:id',
-    component: EditCategoryComponent,
+    loadChildren: () => import('category-lib').then(m => m.CategoryLibModule),
     canActivate: [authGuard]
   },
   {
@@ -51,7 +50,8 @@ const routes: Routes = [
     path: 'admin/blogposts/:id',
     component: EditBlogpostComponent,
     canActivate: [authGuard]
-  }
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' } 
 ];
 
 @NgModule({

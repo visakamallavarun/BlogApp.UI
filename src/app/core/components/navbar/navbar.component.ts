@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { User } from 'src/app/features/auth/models/user.model';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 
@@ -13,8 +13,12 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private router: Router) {
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          console.log('Navigated to:', event.url);
+        }
+      });
   }
-
 
   ngOnInit(): void {
     this.authService.user()
