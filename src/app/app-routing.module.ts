@@ -27,16 +27,6 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'admin/categories/add',
-    loadChildren: () => import('category-lib').then(m => m.CategoryLibModule),
-    canActivate: [authGuard]
-  },
-  {
-    path: 'admin/categories/:id',
-    loadChildren: () => import('category-lib').then(m => m.CategoryLibModule),
-    canActivate: [authGuard]
-  },
-  {
     path: 'admin/blogposts',
     component: BlogpostListComponent,
     canActivate: [authGuard]
