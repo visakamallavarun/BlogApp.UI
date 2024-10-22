@@ -45,18 +45,10 @@ export class BlogPostService {
   }
 
   generateCategory(content: string): Observable<GenerateCategoryResponse> {
-  const payload = { content: content };
-    return this.http.post<GenerateCategoryResponse>(
-      `${environment.apiBaseUrl}/api/BlogPosts/Categories/Content`, 
-      payload, 
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      }
-    )
+    const payload = { content: content };
+    return this.http.post<GenerateCategoryResponse>(`${environment.apiBaseUrl}/api/BlogPosts/Categories/Content`, payload, 
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' })});
   }
-
 
   updateBolgPostOnLanguage(data:UpdateBlogPostLanguage):Observable<BlogPost> {
     return this.http.post<BlogPost>(`${environment.apiBaseUrl}/api/BlogPosts/translate/`, data);
