@@ -9,8 +9,8 @@ import { GetCategory } from '../models/blog-category';
 import { map } from 'rxjs/operators';
 import { UpdateBlogPostLanguage } from '../models/update-blog-post-on-language.model';
 import { GenerateCategoryResponse } from '../models/category-generate.modely';
-import { Category, CategoryService } from 'category-lib';
-import { ImageService } from 'image-selector-lib';
+import { Category, CategoryService } from '@blogapp/category-lib';
+import { ImageService } from '@blogapp/image-selector-lib';
 
 @Component({
   selector: 'app-edit-blogpost',

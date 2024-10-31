@@ -3,8 +3,8 @@ import { AddBlogPost } from '../models/add-blog-post.model';
 import { BlogPostService } from '../services/blog-post.service';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Category, CategoryService } from 'category-lib';
-import { ImageService } from 'image-selector-lib';
+import { Category, CategoryService } from '@blogapp/category-lib';
+import { ImageService } from '@blogapp/image-selector-lib';
 
 @Component({
   selector: 'app-add-blogpost',

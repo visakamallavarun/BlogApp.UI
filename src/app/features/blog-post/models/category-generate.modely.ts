@@ -1,4 +1,4 @@
-import { Category } from "category-lib";
+import { Category } from "@blogapp/category-lib";
 
 
 export interface GenerateCategoryResponse {

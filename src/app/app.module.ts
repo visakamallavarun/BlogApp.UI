@@ -12,10 +12,11 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { ImageSelectorLibModule } from 'image-selector-lib';
-import { CategoryLibModule, LibConfigurationProvider, LibToConfigureConfiguration } from 'category-lib';
+import { ImageSelectorLibModule } from '@blogapp/image-selector-lib';
+import { CategoryLibModule, LibConfigurationProvider, LibToConfigureConfiguration } from '@blogapp/category-lib';
 import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blogpost.component';
 import { environment } from 'src/environments/environment';
+import { LibConfigurationProviderImg, LibToConfigureConfigurationImg } from '@blogapp/image-selector-lib';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigurationStore {
@@ -44,8 +45,12 @@ export function initApp(configurationStore: ConfigurationStore) {
 }
 
 @Injectable({ providedIn: 'root' })
-export class ConfigFromApp implements LibConfigurationProvider {
+export class ConfigFromApp implements LibConfigurationProvider , LibConfigurationProviderImg {
   constructor(private configStore: ConfigurationStore) {}
+  
+  get configImg(): LibToConfigureConfigurationImg {
+    return this.configStore.getConfig();
+  }
 
   get config(): LibToConfigureConfiguration {
     return this.configStore.getConfig();
@@ -73,7 +78,7 @@ export class ConfigFromApp implements LibConfigurationProvider {
     MarkdownModule.forRoot(),
     ImageSelectorLibModule.forRoot({
       config: {
-        provide: LibConfigurationProvider,
+        provide: LibConfigurationProviderImg,
         useClass: ConfigFromApp,
       },
     }),
